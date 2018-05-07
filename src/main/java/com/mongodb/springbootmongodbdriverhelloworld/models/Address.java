@@ -1,7 +1,12 @@
 package com.mongodb.springbootmongodbdriverhelloworld.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Objects;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
+@JsonInclude(NON_NULL)
 public class Address {
 
     private Integer number;

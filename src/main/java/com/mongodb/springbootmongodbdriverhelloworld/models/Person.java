@@ -1,11 +1,15 @@
 package com.mongodb.springbootmongodbdriverhelloworld.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.bson.types.ObjectId;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
+@JsonInclude(NON_NULL)
 public class Person {
 
     private ObjectId id;
