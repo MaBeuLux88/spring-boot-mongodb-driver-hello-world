@@ -62,24 +62,6 @@ curl -X DELETE http://localhost:8080/api/persons
 curl -X PUT http://localhost:8080/api/person -H "Content-type: application/json" -d '{"id" : "5af0d0480c9e5926c51cf5ea", "name":"Maxime Beugnet", "age": 42, "address": {"number": 456, "street" : "World Street", "postCode" : "54321"}, "hobbies": ["Biking", "Memes", "Java", "MongoDB"]}'
 ```
 
-# Problems
+# Problem
 
-The ObjectId is returned as a weird embedded object.
-
-```js
-{
-    "id": {
-        "timestamp": 1525731400,
-        "machineIdentifier": 826969,
-        "processIdentifier": 9925,
-        "counter": 1897963,
-        "date": "2018-05-07T22:16:40.000+0000",
-        "time": 1525731400000,
-        "timeSecond": 1525731400
-    },
-    "name": "John Doe",
-    "age": 42
-}
-```
-
-Also, the *_id* field is automatically mapped to the *id* field. This is pretty misleading.
+The *_id* field is automatically mapped to the *id* field. This is pretty misleading.

@@ -1,6 +1,8 @@
 package com.mongodb.springbootmongodbdriverhelloworld.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.bson.types.ObjectId;
 
 import java.util.Date;
@@ -12,12 +14,22 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @JsonInclude(NON_NULL)
 public class Person {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private ObjectId id;
     private String name;
     private Integer age;
     private Date createdAt = new Date();
     private Address address;
     private List<String> hobbies;
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Person setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
 
     public ObjectId getId() {
         return id;
