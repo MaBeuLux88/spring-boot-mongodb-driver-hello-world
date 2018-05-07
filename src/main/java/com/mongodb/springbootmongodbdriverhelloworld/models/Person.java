@@ -2,24 +2,25 @@ package com.mongodb.springbootmongodbdriverhelloworld.models;
 
 import org.bson.types.ObjectId;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class Person {
 
-    private ObjectId _id;
+    private ObjectId id;
     private String name;
     private Integer age;
+    private Date createdAt = new Date();
     private Address address;
     private List<String> hobbies;
 
-    public ObjectId get_id() {
-
-        return _id;
+    public ObjectId getId() {
+        return id;
     }
 
-    public Person set_id(ObjectId _id) {
-        this._id = _id;
+    public Person setId(ObjectId id) {
+        this.id = id;
         return this;
     }
 
@@ -61,7 +62,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" + "_id=" + _id + ", name='" + name + '\'' + ", age=" + age + ", address=" + address + ", hobbies=" + hobbies + '}';
+        return "Person{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + ", address=" + address + ", hobbies=" + hobbies + '}';
     }
 
     @Override
@@ -71,15 +72,15 @@ public class Person {
         if (o == null || getClass() != o.getClass())
             return false;
         Person person = (Person) o;
-        return Objects.equals(_id, person._id) && Objects.equals(name, person.name) && Objects.equals(age,
-                                                                                                      person.age) && Objects.equals(
+        return Objects.equals(id, person.id) && Objects.equals(name, person.name) && Objects.equals(age,
+                                                                                                    person.age) && Objects.equals(
                 address, person.address) && Objects.equals(hobbies, person.hobbies);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(_id, name, age, address, hobbies);
+        return Objects.hash(id, name, age, address, hobbies);
     }
 
 }
