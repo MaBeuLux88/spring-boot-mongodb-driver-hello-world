@@ -8,18 +8,18 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.springbootmongodbdriverhelloworld.models.Person;
 import org.bson.BsonDocument;
 import org.bson.types.ObjectId;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-@Component
-public class PersonRepositoryImpl implements PersonRepository {
+@Repository
+public class MongoDBPersonRepository implements PersonRepository {
 
     private final MongoCollection<Person> personCollection;
 
-    public PersonRepositoryImpl(MongoClient mongoClient) {
+    public MongoDBPersonRepository(MongoClient mongoClient) {
         MongoDatabase db = mongoClient.getDatabase("test");
         personCollection = db.getCollection("person", Person.class);
     }
