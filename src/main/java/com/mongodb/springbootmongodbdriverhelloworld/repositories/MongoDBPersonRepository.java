@@ -25,8 +25,10 @@ public class MongoDBPersonRepository implements PersonRepository {
     }
 
     @Override
-    public void insert(Person person) {
+    public Person insert(Person person) {
+        person.setId(new ObjectId());
         personCollection.insertOne(person);
+        return person;
     }
 
     @Override
@@ -43,13 +45,15 @@ public class MongoDBPersonRepository implements PersonRepository {
     }
 
     @Override
-    public void insertMany(List<Person> persons) {
+    public List<Person> insertMany(List<Person> persons) {
+        persons.forEach(p -> p.setId(new ObjectId()));
         personCollection.insertMany(persons);
+        return persons;
     }
 
     @Override
-    public void delete(String id) {
-        personCollection.deleteOne(Filters.eq("_id", new ObjectId(id)));
+    public Person delete(String id) {
+        return personCollection.findOneAndDelete(Filters.eq("_id", new ObjectId(id)));
     }
 
     @Override
@@ -58,7 +62,7 @@ public class MongoDBPersonRepository implements PersonRepository {
     }
 
     @Override
-    public void update(Person person) {
-        personCollection.replaceOne(Filters.eq("_id", person.getId()), person);
+    public Person update(Person person) {
+        return personCollection.findOneAndReplace(Filters.eq("_id", person.getId()), person);
     }
 }

@@ -30,21 +30,21 @@ public class PersonController {
     }
 
     @PostMapping("/person")
-    public ResponseEntity<Void> postPerson(@RequestBody Person person) {
-        personRepository.insert(person);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<Person> postPerson(@RequestBody Person person) {
+        Person inserted = personRepository.insert(person);
+        return ResponseEntity.status(HttpStatus.CREATED).body(inserted);
     }
 
     @PostMapping("/persons")
-    public ResponseEntity<Void> postPersons(@RequestBody List<Person> persons) {
-        personRepository.insertMany(persons);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<List<Person>> postPersons(@RequestBody List<Person> persons) {
+        List<Person> inserted = personRepository.insertMany(persons);
+        return ResponseEntity.status(HttpStatus.CREATED).body(inserted);
     }
 
     @DeleteMapping("/person/{id}")
-    public ResponseEntity<Void> deletePerson(@PathVariable String id) {
-        personRepository.delete(id);
-        return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<Person> deletePerson(@PathVariable String id) {
+        Person deleted = personRepository.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body(deleted);
     }
 
     @DeleteMapping("/persons")
@@ -54,7 +54,7 @@ public class PersonController {
     }
 
     @PutMapping("/person")
-    public ResponseEntity<Void> updatePerson(@RequestBody Person person) {
+    public ResponseEntity<Person> updatePerson(@RequestBody Person person) {
         if (person.getId() == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 
@@ -62,8 +62,8 @@ public class PersonController {
         if (personNotFound)
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         else {
-            personRepository.update(person);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            Person updated = personRepository.update(person);
+            return ResponseEntity.status(HttpStatus.OK).body(updated);
         }
     }
 

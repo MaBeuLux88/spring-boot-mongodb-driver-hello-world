@@ -6,17 +6,17 @@ import java.util.List;
 
 public interface PersonRepository {
 
-    void insert(Person person);
+    Person insert(Person person);
 
     Person findOne(String id);
 
     List<Person> findAll();
 
-    void insertMany(List<Person> persons);
+    List<Person> insertMany(List<Person> persons);
 
-    void delete(String id);
+    Person delete(String id);
 
     void deleteAll();
 
-    void update(Person person);
+    Person update(Person person);
 }
